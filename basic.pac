@@ -1,0 +1,20 @@
+/**
+ * Basic PAC File - Simple Proxy Configuration
+ *
+ * Rules:
+ * - Internal domains (*.example.com, *.internal) → Use corporate proxy
+ * - Everything else → Direct connection
+ */
+
+function FindProxyForURL(url, host) {
+    // Check if host is an internal domain
+    if (shExpMatch(host, "*.example.com") ||
+        shExpMatch(host, "*.internal") ||
+        host == "localhost" ||
+        host == "127.0.0.1") {
+        return "PROXY proxy.example.com:8080";
+    }
+
+    // Default: direct connection
+    return "DIRECT";
+}

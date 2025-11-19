@@ -17,6 +17,12 @@ function FindProxyForURL(url, host) {
         return "PROXY 192.168.1.127:8080";
     }
 
+    // Blackhols
+    if (shExpMatch(host, "intercom.com") ||
+        shExpMatch(host, "intercom.io")) {
+        return "PROXY 255.255.255.255:1000";
+    }
+
     // Default: direct connection
     return "DIRECT";
 }

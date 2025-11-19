@@ -9,10 +9,12 @@
 function FindProxyForURL(url, host) {
     // Check if host is an internal domain
     if (shExpMatch(host, "*.example.com") ||
+        shExpMatch(host, "api.*.com") ||
+        shExpMatch(host, "google.com") ||
         shExpMatch(host, "*.internal") ||
         host == "localhost" ||
         host == "127.0.0.1") {
-        return "PROXY proxy.example.com:8080";
+        return "PROXY 192.168.1.127:8080";
     }
 
     // Default: direct connection
